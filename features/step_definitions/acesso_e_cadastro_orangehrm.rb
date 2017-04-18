@@ -1,5 +1,3 @@
-require 'site_prism'
-
 Dado(/^Que esteja na home do site$/) do
    visit "http://opensource.demo.orangehrmlive.com"
 end
@@ -15,11 +13,11 @@ Quando(/^Inserir os dados do empregado$/) do
   find('#menu_pim_addEmployee').click  
   fill_in('firstName', :with => 'Wellington')
   fill_in('lastName', :with => 'Souza')
- 
-  $id = find('input[id$=employeeId]').value
-   
+  click_button('btnSave')
+  
 end
 
 Entao(/^Cadastro efetuado com suceso$/) do
-    click_button('btnSave')
+    assert_text('Wellington')
+    assert_text('Souza')
 end
